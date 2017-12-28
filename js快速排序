@@ -1,0 +1,61 @@
+
+//正序快速排序算法  key 为排序主键   方法按key正序排列
+function quick_sort_asc(list, start, end , key) { 
+      if (start < end) { 
+        var key1=key;
+        var pivotpos = partition_asc(list, start, end , key1);   //找出快排的基数 
+        quick_sort_asc(list, start, pivotpos - 1 , key);        //将左边的快排一次 
+        quick_sort_asc(list, pivotpos + 1, end , key);          //将右边的快排一次 
+      } 
+    }    
+//将一个序列调整成以基数为分割的两个区域，一边全都不小于基数，一边全都不大于基数 
+function partition_asc(list, start, end , key) { 
+      var pivotpos = start; 
+      var pivot = list[start]; 
+      var tmp; 
+
+      for(var i = start + 1; i <= end; i ++) { 
+        if (list[i][key] <pivot[key]) { 
+          tmp = list[i]; 
+          pivotpos += 1; 
+          list[i] = list[pivotpos]; 
+          list[pivotpos] = tmp; 
+        } 
+      } 
+
+      tmp = list[start]; 
+      list[start] = list[pivotpos]; 
+      list[pivotpos] = tmp; 
+      return pivotpos; 
+    } 
+
+
+//倒序快速排序算法  key 为排序主键   方法按key倒序排列
+function quick_sort_desc(list, start, end , key) { 
+      if (start < end) { 
+        var key1=key;
+        var pivotpos = partition_desc(list, start, end , key1);   //找出快排的基数 
+        quick_sort_desc(list, start, pivotpos - 1 , key);        //将左边的快排一次 
+        quick_sort_desc(list, pivotpos + 1, end , key);          //将右边的快排一次 
+      } 
+    }    
+//将一个序列调整成以基数为分割的两个区域，一边全都不小于基数，一边全都不大于基数 
+function partition_desc(list, start, end , key) { 
+      var pivotpos = start; 
+      var pivot = list[start]; 
+      var tmp; 
+
+      for(var i = start + 1; i <= end; i ++) { 
+        if (list[i][key] >pivot[key]) { 
+          tmp = list[i]; 
+          pivotpos += 1; 
+          list[i] = list[pivotpos]; 
+          list[pivotpos] = tmp; 
+        } 
+      } 
+
+      tmp = list[start]; 
+      list[start] = list[pivotpos]; 
+      list[pivotpos] = tmp; 
+      return pivotpos; 
+    } 
