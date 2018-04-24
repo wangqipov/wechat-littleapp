@@ -1,0 +1,6 @@
+oracle查询期限内登录次数最多的前10人
+
+select * from (select   logincode,count(logincode) as sum from login_info   where logintime between to_date('2018/3/1 9:29:53','yyyy-mm-dd hh24:mi:ss') and to_date
+
+('2018/4/1 9:29:53','yyyy-mm-dd hh24:mi:ss')   group by logincode order by sum desc)
+     where rownum between 1 and 10
